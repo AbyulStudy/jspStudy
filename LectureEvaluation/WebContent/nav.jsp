@@ -15,7 +15,7 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown">회원관리</a>	
 					<div class="dropdown-menu" aria-labelledby="dropdown">
-						<a href="http://localhost:8080/userLogin.jsp" class="dropdown-item">로그인</a>
+						<a href="http://localhost:8080/member/view/userLogin.jsp" class="dropdown-item">로그인</a>
 						<a href="http://localhost:8080/member/view/userRegister.jsp" class="dropdown-item">회원가입</a>
 						<a href="#" class="dropdown-item">로그아웃</a>
 					</div>

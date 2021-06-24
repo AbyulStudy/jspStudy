@@ -21,7 +21,7 @@
 
 	#회원테이블 User Table
 	CREATE TABLE USER (
-	  userID varchar(50), #작성자 아이디
+	  userID varchar(50) PRIMARY KEY, #작성자 아이디
 	  userPassword varchar(50), #작성자 비밀번호
 	  userEmail varchar(50), #작성자 이메일
 	  userEmailHash varchar(64), #이메일 확인 해시값
