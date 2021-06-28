@@ -13,6 +13,7 @@
 <%@ page import="util.Gmail" %>
 <%@ page import="java.io.PrintWriter" %>
 <%
+	request.setCharacterEncoding("UTF-8");
 	UserDAO userDAO = new UserDAO();
 	String userID = null;
 	if(session.getAttribute("userID") != null){

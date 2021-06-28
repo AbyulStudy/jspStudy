@@ -34,3 +34,30 @@
 	  evaluationID int, #평가 번호
 	  userIP varchar(50) #작성자 아이피
 	);
+	
+	# java.sql.SQLException: Incorrect string value: '\xE3\x85\x81\xE3\x84\xB4...' for column 'lectureName' at row 1 같은 오류 발생시 다음과 같이 처리
+	# mysql utf8 설정
+		1) my.ini 추가 
+			# Set Character UTF-8
+			[client]
+			default-character-set = utf8
+			
+			[mysqld]
+			character-set-client-handshake = FALSE
+			init_connect = "SET collation_connection = utf8_general_ci"
+			init_connect = "SET NAMES utf8"
+			character-set-server = utf8
+			
+			[mysql]
+			default-character-set = utf8
+			
+			[mysqldump]
+			default-character-set = utf8
+		
+		2) database, table character set 설정		
+			ALTER TABLE table_name convert to charset utf8;
+		3) mysql 재시작
+			
+
+
+

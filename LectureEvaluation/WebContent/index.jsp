@@ -1,7 +1,50 @@
+<%@page import="user.UserDAO"%>
+<%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="nav.jsp"></jsp:include>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String userID = null;
+	if(session.getAttribute("userID") != null){
+		userID =(String) session.getAttribute("userID");
+	}
+/***************************************************************************/
+/**************************** 예외처리 발생 부분 *********************************/
+/***************************************************************************/
+/*
+SEVERE: 경로 []의 컨텍스트 내의 서블릿 [jsp]을(를) 위한 Servlet.service() 호출이, 근본 원인(root cause)과 함께, 예외 [java.lang.IllegalStateException: 데이터를 배출하는 중 예외가 발생했습니다.]을(를) 발생시켰습니다.
+java.io.IOException: 스트림이 닫혔습니다.
+try{} catch{ IllegalStateException e } 문을 사용하여 예외처리 적용
+*/
+	try{
+	  	if(userID == null){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인을 해주세요.')");
+			script.println("location.href = 'http://localhost:8080/member/view/userLogin.jsp'");
+			script.println("</script>");
+			script.close();
+			return;
+		}
+		
+	 	boolean emailChecked = new UserDAO().getUserEmailChecked(userID);
+		if(emailChecked == false){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('메일을 인증해주세요.')");
+			script.println("location.href = 'http://localhost:8080/member/pro/emailSendConfirm.jsp'");
+			script.println("</script>");
+			script.close();
+			return;
+		}
+	} catch( IllegalStateException e) {
+		e.printStackTrace();
+	}
+/***************************************************************************/
+%>
+
 
 	<div class="container">
 		<form method="get" action="./index.jsp" class="form-inline mt-3">
@@ -68,7 +111,7 @@
 					</button>
 				</div><!-- end_modal-header -->
 				<div class="modal-body">
-					<form action="./evaluationResgisterAction.jsp" method="post">
+					<form action="http://localhost:8080/pro/evaluationResgisterAction.jsp" method="post">
 						<div class="form-row">
 							<div class="form-group col-sm-6">
 								<label>강의명</label>
@@ -122,6 +165,10 @@
 							<label>제목</label>
 							<input type="text" name="evaluationTitle" class="form-control" maxlength="20" />
 						</div>
+						<div class="form-group">
+							<label>내용</label>
+							<textarea name="evaluationContent" class="form-control" maxlength="2048" style="height:180px; resize: none;"></textarea>
+						</div>
 						
 						<div class="form-row">
 							<div class="form-group col-sm-3">
@@ -156,7 +203,7 @@
 							</div>
 							<div class="form-group col-sm-3">
 								<label>강의</label>
-								<select name="totalScore" class="form-control">
+								<select name="lectureScore" class="form-control">
 									<option value="A" selected>A</option>
 									<option value="B">B</option>
 									<option value="C">C</option>
