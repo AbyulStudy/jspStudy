@@ -35,6 +35,8 @@
 	  userIP varchar(50) #작성자 아이피
 	);
 	
+	ALTER TABLE LIKEY ADD PRIMARY KEY (userID, evaluationID);
+	
 	# java.sql.SQLException: Incorrect string value: '\xE3\x85\x81\xE3\x84\xB4...' for column 'lectureName' at row 1 같은 오류 발생시 다음과 같이 처리
 	# mysql utf8 설정
 		1) my.ini 추가 

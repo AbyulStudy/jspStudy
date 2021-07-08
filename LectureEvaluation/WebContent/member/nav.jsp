@@ -37,8 +37,8 @@
 				</li><!-- end_nav-item -->
 			</ul><!-- end_navbar-nav -->
 			
-			<form class="form-inline my-2 my-lg-0">
-				<input type="text" class="form-control mr-sm-2" type="search" placeholder="내용을 입력하세요." aria-label="Search" />
+			<form class="form-inline my-2 my-lg-0" action="http://localhost:8080/index.jsp">
+				<input type="text" name="search" class="form-control mr-sm-2" type="search" placeholder="내용을 입력하세요." aria-label="Search" />
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
 			</form>
 		</div><!-- end_navbar-collapse -->
